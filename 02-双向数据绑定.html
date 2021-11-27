@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-bind:value="search.info"/>
+        <br>
+        <input type="text" :value="search.info"/>
+        <br>
+        {{search.info}}
+        <br>
+        <input type="text" v-model:value="search.info"/>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                search: {
+                    info: '天青色等烟雨'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

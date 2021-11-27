@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 id="h1">{{message}}</h1>
+        <p> <button v-on:click="updateInfo()">更新</button> </p>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: '床前明月光'
+            },
+            methods: {
+                showInfo() {
+                    console.log('showInfo!!!!!!')
+                },
+                updateInfo() {
+                    console.log('updateInfo!!!!!!')
+                    this.message = '疑是地上霜'
+                }
+            },
+            //查看vue初始化的四个钩子方法
+            beforeCreate() {//第一个钩子方法,vue属性、方法未初始化   第一个被执行的钩子方法：实例被创建出来之前执行
+                console.log('beforeCreate!!!!!!')
+                console.log("this.message"+this.message)
+                console.log(this.showInfo())
+                // beforeCreate执行时，data 和 methods 中的 数据都还没有没初始化
+            },
+            created() {//第二个钩子方法,vue属性、方法已初始化
+                console.log('created!!!!!!')
+                console.log("this.message" + this.message)
+                console.log(this.showInfo())
+                // created执行时，data 和 methods 都已经被初始化好了！
+                // 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作
+            }
+            ,
+            beforeMount() {//第三个钩子方法，模板已完成，页面未渲染
+                console.log('beforeMount!!!!!!')
+                let text = document.getElementById('h1').innerText
+                console.log("页面元素=" + text)
+                console.log("视图模板=" + this.message)
+                // beforeMount执行时，模板已经在内存中编辑完成了，尚未被渲染到页面中
+            },
+            mounted() {//第四个钩子方法，模板已完成，页面已渲染
+                console.log('mounted!!!!!!')
+                let text = document.getElementById('h1').innerText
+                console.log("页面元素=" + text)
+                console.log("视图模板=" + this.message)
+                // 内存中的模板已经渲染到页面，用户已经可以看见内容
+            },
+            //更新时两个钩子方法
+            beforeUpdate() { // 数据更新的前一刻
+                console.log('beforeUpdate!!!!!!')
+                let text = document.getElementById('h1').innerText
+                console.log("页面元素=" + text)
+                console.log("视图模板=" + this.message)
+                // beforeUpdate执行时，内存中的数据已更新，但是页面尚未被渲染
+            },
+            updated() {
+                console.log('updated!!!!!!')
+                let text = document.getElementById('h1').innerText
+                console.log("页面元素=" + text)
+                console.log("视图模板=" + this.message)
+                // updated执行时，内存中的数据已更新，并且页面已经被渲染
+            }
+        })
+    </script>
+</body>
+
+</html>

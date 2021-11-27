@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <li v-for="n in 3">{{n}}</li> -->
+        <li v-for="n in nums">{{n}}</li>
+        
+        <!-- table>tr>td*3 -->
+        <table>
+            <tr v-for="user in users">
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.gender}}</td>
+            </tr>
+        </table>
+
+        <!--渲染表单  动态渲染-->
+        <form action="">
+            <p v-for="(value,key,index) in user"> <label>{{index+1}}、{{key}}:</label>
+                 <input type="text" v-model="value"> </p>
+        </form>   
+
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                nums: [1,2,3,4,5],
+                users: [
+                    {name:'z3',age:33,gender:'女'},
+                    {name:'z4',age:34,gender:'男'},
+                    {name:'z5',age:35,gender:'女'}
+                ],
+                user:{name:'z5',age:35,gender:'女'}
+                    
+                
+            }
+        })
+    </script>
+</body>
+
+</html>
